@@ -48,6 +48,12 @@ find ./src/esp-nn/ -type f -exec sed -i -e 's/#include <esp_nn_defs.h>/#include 
 find ./src/tensorflow/ -type f -exec sed -i -e 's/#include <esp_nn.h>/#include "esp-nn\/esp_nn.h"/g' {} \;
 find ./src/esp-nn/ -type f -iname "*esp32s3.S" -exec sed -i '1s/^/#ifdef ARCH_ESP32_S3\n/;$a\\n#endif' {} \;
 
+# Modify specific TensorFlow Lite files
+sed -i 's/private:/TF_LITE_REMOVE_VIRTUAL_DELETE\npublic:/' ./src/tensorflow/lite/micro/memory_planner/linear_memory_planner.h
+sed -i 's/private:/TF_LITE_REMOVE_VIRTUAL_DELETE\npublic:/' ./src/tensorflow/lite/micro/tflite_bridge/micro_error_reporter.h
+sed -i 's/private:/TF_LITE_REMOVE_VIRTUAL_DELETE\npublic:/' ./src/tensorflow/lite/micro/memory_planner/greedy_memory_planner.h
+
+
 echo "Clean up"
 #clean up 
 rm -fr esp-tflite-micro
