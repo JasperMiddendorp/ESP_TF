@@ -39,8 +39,6 @@ class LinearMemoryPlanner : public MicroMemoryPlanner {
   // invocation.
   bool preserves_all_tensors() const override { return true; }
   TF_LITE_REMOVE_VIRTUAL_DELETE
-
-  TF_LITE_REMOVE_VIRTUAL_DELETE
   
  private:
   static constexpr int kMaxBufferCount = 1024;

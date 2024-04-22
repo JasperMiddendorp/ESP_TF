@@ -112,9 +112,6 @@ class GreedyMemoryPlanner : public MicroMemoryPlanner {
   // that aren't being used during a phase of invocation are overwritten.
   bool preserves_all_tensors() const override { return false; }
   TF_LITE_REMOVE_VIRTUAL_DELETE
-
-
-  TF_LITE_REMOVE_VIRTUAL_DELETE
   
  private:
   // Whether a buffer is active in a given time range.
